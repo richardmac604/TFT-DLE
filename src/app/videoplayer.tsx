@@ -13,8 +13,6 @@ export default function VideoPlayer(){
         allowFullScreen
         allow="accelerometer; clipboard-write; encrypted-media; gryoscope; picture-in-picture">
         </iframe>
-
-        <video src = "https://www.youtube.com/watch?v=YFhxQ8kmJw0"></video>
      </div>
     )
 }
