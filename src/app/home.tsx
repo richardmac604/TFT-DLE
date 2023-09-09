@@ -2,16 +2,14 @@
 import VideoPlayer from "./videoplayer"
 import Popup from "./popup"
 import {useState} from 'react'
-import prisma from "@/script"
 
-
-export default function Home() {
+export default function Home(props:any) {
   const[buttonPopup, setButtonPopup] = useState(false)
-
+  const DB = props.DB
   return (
     <main className="flex flex-col items-center justify-between">
       <div className = "text-3xl p-10">TFTdle</div>
-      <VideoPlayer></VideoPlayer>
+      <VideoPlayer url = {DB[2].url}></VideoPlayer>
       <div>
         <button onClick= {() => setButtonPopup(true)}className ="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-full mx-5 w-80 text-lg">
         top
