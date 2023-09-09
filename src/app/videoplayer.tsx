@@ -1,8 +1,18 @@
-'use client'
+import prisma from "@/script"
 
-export default function VideoPlayer(){
+function getDb(){
+    return prisma.video.findMany()
+  }
+
+
+export default async function VideoPlayer(){
+
+    const dbinfo = await getDb()
+    console.log(dbinfo[0].url)
+
     var URL = "Wdll9P9icJU"
     var id = "embed/" + URL + "?vq=hd1080&modestbranding=1&rel=0"
+    
     return(
      <div>
         <iframe

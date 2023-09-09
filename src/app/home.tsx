@@ -2,10 +2,12 @@
 import VideoPlayer from "./videoplayer"
 import Popup from "./popup"
 import {useState} from 'react'
+import prisma from "@/script"
+
 
 export default function Home() {
   const[buttonPopup, setButtonPopup] = useState(false)
-  
+
   return (
     <main className="flex flex-col items-center justify-between">
       <div className = "text-3xl p-10">TFTdle</div>
