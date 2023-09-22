@@ -1,23 +1,40 @@
 'use client'
 import VideoPlayer from "./videoplayer"
 import Popup from "./popup"
-import {useState} from 'react'
+import VideoPlayerAPI from "./videoplayerAPI"
+import {useCallback, useState} from 'react'
+import { render } from "react-dom"
 
 export default function Home(props:any) {
   const[buttonPopup, setButtonPopup] = useState(false)
-  const DB = props.DB
+  const {DB} = props
+
+  // Shows popup when video ends. -Add functionality to show diff popups
+  const endVideo = useCallback(() => {
+
+    setButtonPopup(true);
+  }, [buttonPopup]);
+
+  const buttonClicked = (() => {
+    const domNode = document.getElementById('video');
+    render(<VideoPlayerAPI url = {DB[2].url} endVideo = {endVideo}></VideoPlayerAPI>,domNode)
+  
+  })
+
+
   return (
     <main className="flex flex-col items-center justify-between">
+
       <div className = "text-3xl p-10">TFTdle</div>
-      <VideoPlayer url = {DB[2].url}></VideoPlayer>
+      <div id = 'video'></div>
       <div>
-        <button onClick= {() => setButtonPopup(true)}className ="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-full mx-5 w-80 text-lg">
+        <button onClick= {buttonClicked}className ="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-full mx-5 w-80 text-lg">
         top
         </button>
         <button onClick= {() => setButtonPopup(true)}className ="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-full mx-5 w-80 text-lg">
         bottom
         </button>
-        </div>
+      </div>
       
       <div className = "p-32 flex flex-col items-center justify-between" >
         <p className="text-7xl">Instructions</p>

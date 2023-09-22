@@ -3,7 +3,9 @@
 export default function VideoPlayer(props:any){
     
     const url = props.url
-    var id = "embed/" + url + "?vq=hd1080&modestbranding=1&rel=0"
+    var id = "embed/"
+     + url 
+     + "?vq=hd1080&modestbranding=1&rel=0&controls=0&disablekb=1"
     
     return(
      <div>
