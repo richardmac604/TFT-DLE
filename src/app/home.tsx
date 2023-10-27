@@ -7,15 +7,18 @@ import { render } from "react-dom"
 
 export default function Home(props:any) {
   const[buttonPopup, setButtonPopup] = useState(false)
+  const[userChoice, setUserChoice] = useState("")
+  const[playerResult, setPlayerResult] = useState("not changed")
   const {DB} = props
 
-  // Shows popup when video ends. -Add functionality to show diff popups
+  // Shows popup when video ends.
   const endVideo = useCallback(() => {
-
     setButtonPopup(true);
   }, [buttonPopup]);
 
-  const buttonClicked = (() => {
+  const buttonClicked = ((e:any) => {
+    setUserChoice(e.target.inner);
+    (userChoice === DB[2].name)?setPlayerResult("Winner"):setPlayerResult("Loser");
     const domNode = document.getElementById('video');
     render(<VideoPlayerAPI url = {DB[2].url} endVideo = {endVideo}></VideoPlayerAPI>,domNode)
   
@@ -31,7 +34,7 @@ export default function Home(props:any) {
         <button onClick= {buttonClicked}className ="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-full mx-5 w-80 text-lg">
         top
         </button>
-        <button onClick= {() => setButtonPopup(true)}className ="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-full mx-5 w-80 text-lg">
+        <button onClick= {buttonClicked}className ="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-full mx-5 w-80 text-lg">
         bottom
         </button>
       </div>
@@ -44,7 +47,7 @@ export default function Home(props:any) {
       </div>
       
       <Popup trigger={buttonPopup} setTrigger = {setButtonPopup}>
-        <h1 className = "flex flex-col items-center text-center text-5xl">WINNER</h1>
+        <h1 className = "flex flex-col items-center text-center text-5xl">{playerResult}</h1>
       </Popup>
 
  

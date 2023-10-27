@@ -1,6 +1,5 @@
-import react, { useState } from 'react'
-import Youtube from 'react-youtube'
 
+import Youtube from 'react-youtube'
 
 export default function videoplayerAPI(props:any){
 
